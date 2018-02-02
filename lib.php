@@ -32,16 +32,15 @@ require_once($CFG->dirroot . '/repository/lib.php');
  * @copyright  2017 Andrei Bautu
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 class repository_giphy extends repository {
     /**
      * Retrieves a list of from giphy's API
      * @see https://developers.giphy.com/explorer/
      *
-     * @param $id id of the image to retrieve data for
-     * @param $search text to search for (use when id is null); if null, then trending images will be retrieve
-     * @param $page the page of the listing to retrieve
-     * @param $pagesize the number of items per page to retrieve
+     * @param string $id id of the image to retrieve data for
+     * @param string $search text to search for (use when id is null); if null, then trending images will be retrieve
+     * @param int $page the page of the listing to retrieve
+     * @param int $pagesize the number of items per page to retrieve
      * @return array
      */
     protected function get_files($id = null, $search = null, $page = 0, $pagesize = 20) {
@@ -82,7 +81,7 @@ class repository_giphy extends repository {
     /**
      * Format files data as folders for filepicker.
      *
-     * @param $data
+     * @param object $data object received from get_files
      * @return array
      * @see https://docs.moodle.org/dev/Repository_plugins
      */
@@ -113,7 +112,7 @@ class repository_giphy extends repository {
     /**
      * Format files data as files for filepicker.
      *
-     * @param $data
+     * @param object $data object received from get_files
      * @return array
      * @see https://docs.moodle.org/dev/Repository_plugins
      */
@@ -176,8 +175,8 @@ class repository_giphy extends repository {
     /**
      * Get file listing
      *
-     * @param string $encodedpath
-     * @param string $page
+     * @param string $path path of the listing
+     * @param int $page page of listing
      * @return mixed
      */
     public function get_listing($path = '', $page = '') {

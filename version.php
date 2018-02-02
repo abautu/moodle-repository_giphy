@@ -17,8 +17,7 @@
 /**
  * Version details
  *
- * @package    repository
- * @subpackage giphy
+ * @package    repository_giphy
  * @copyright  2017 Andrei Bautu
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
