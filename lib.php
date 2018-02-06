@@ -43,9 +43,12 @@ class repository_giphy extends repository {
      * @param int $pagesize the number of items per page to retrieve
      * @return array
      */
-    protected function get_files($id = null, $search = null, $page = 0, $pagesize = 20) {
+    protected function get_files($id = null, $search = null, $page = 0, $pagesize = 0) {
         if (empty($page)) {
             $page = 1;
+        }
+        if (empty($pagesize)) {
+            $pagesize = (int)get_config('giphy', 'page_size');
         }
         $url = 'https://api.giphy.com/v1/gifs/';
         if ($id) {
@@ -64,7 +67,7 @@ class repository_giphy extends repository {
         if ($data->meta->status != 200) {
             return null;
         }
-        $data->pagination->pagesize = $pagesize;
+        $data->pagination->pagesize = max($pagesize, $data->pagination->count);
         $data->pagination->path = $id;
         // Make the output uniform so format_files and format_folders have simpler structure.
         if ($id) {
@@ -244,6 +247,7 @@ class repository_giphy extends repository {
         return array_merge(parent::get_type_option_names(), array(
             'api_key',
             'rating',
+            'page_size',
         ));
     }
 
@@ -258,6 +262,8 @@ class repository_giphy extends repository {
 
         $apikey = get_config('giphy', 'api_key');
         $rating = get_config('giphy', 'rating');
+        $pagesize = (int)get_config('giphy', 'page_size');
+
         $mform->addElement('text', 'api_key', get_string('api_key', 'repository_giphy'), array('size' => '32'));
         $mform->addRule('api_key', get_string('required'), 'required', null, 'client');
         $mform->setDefault('api_key', $apikey);
@@ -270,7 +276,13 @@ class repository_giphy extends repository {
             'R' => get_string('ratingR', 'repository_giphy'),
             'G' => get_string('ratingG', 'repository_giphy'),
         );
-        $mform->addElement('select', 'rating', get_string('rating', 'repository_giphy'), $ratings, $attributes);
+        $mform->addElement('select', 'rating', get_string('rating', 'repository_giphy'), $ratings);
         $mform->setDefault('rating', $rating);
+
+        $pagesizes = array(25, 50, 100, 250, 500, 1000);
+        $pagesizes = array_combine($pagesizes, $pagesizes);
+        $mform->addElement('select', 'page_size', get_string('page_size', 'repository_giphy'), $pagesizes);
+        $mform->addRule('page_size', get_string('required'), 'required', null, 'client');
+        $mform->setDefault('page_size', $pagesizes);
     }
 }

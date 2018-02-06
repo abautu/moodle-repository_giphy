@@ -34,3 +34,4 @@ $string['ratingPG-13'] = 'PG-13 - Parents Strongly Cautioned';
 $string['ratingPG'] = 'PG - Parental Guidance Suggested';
 $string['ratingR'] = 'R - Restricted';
 $string['ratingG'] = 'G - General Audiences';
+$string['page_size'] = 'Images per API request';
