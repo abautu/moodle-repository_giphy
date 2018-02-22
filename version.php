@@ -28,4 +28,4 @@ $plugin->version   = 2018012800;        // The current plugin version (Date: YYY
 $plugin->requires  = 2016051900;        // Requires this Moodle version
 $plugin->component = 'repository_giphy'; // Full name of the plugin (used for diagnostics).
 $plugin->release   = '1.0';
-$plugin->maturity = MATURITY_BETA;
+$plugin->maturity = MATURITY_STABLE;
