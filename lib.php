@@ -254,7 +254,7 @@ class repository_giphy extends repository {
     /**
      * Edit/Create Admin Settings Moodle form
      *
-     * @param moodleform $mform Moodle form (passed by reference)
+     * @param MoodleQuickForm $mform Moodle form (passed by reference)
      * @param string $classname repository class name
      */
     public static function type_config_form($mform, $classname = 'repository') {
@@ -267,6 +267,7 @@ class repository_giphy extends repository {
         $mform->addElement('text', 'api_key', get_string('api_key', 'repository_giphy'), array('size' => '32'));
         $mform->addRule('api_key', get_string('required'), 'required', null, 'client');
         $mform->setDefault('api_key', $apikey);
+        $mform->setType('api_key', PARAM_ALPHANUMEXT);
 
         $ratings = array(
             '' => get_string('any'),
