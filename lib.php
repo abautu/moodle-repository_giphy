@@ -232,7 +232,7 @@ class repository_giphy extends repository {
     public function print_search() {
         global $CFG;
         $str = parent::print_search();
-        $str .= html_writer::img("{$CFG->wwwroot}/repository/giphy/pix/Poweredby_100px-Black_VertLogo.png");
+        $str .= html_writer::img("{$CFG->wwwroot}/repository/giphy/pix/Poweredby_100px-Black_VertLogo.png", "Giphy");
         return $str;
     }
 
