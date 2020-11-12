@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2020111200;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version   = 2020111201;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2016051900;        // Requires this Moodle version
 $plugin->component = 'repository_giphy'; // Full name of the plugin (used for diagnostics).
-$plugin->release   = '1.1';
+$plugin->release   = '1.1.1';
 $plugin->maturity = MATURITY_STABLE;
