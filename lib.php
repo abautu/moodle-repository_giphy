@@ -197,7 +197,7 @@ class repository_giphy extends repository {
      *
      * @param string $searchtext search key word
      * @param int $page page
-     * @return mixed see {@link repository::get_listing()}
+     * @return mixed see {@see repository::get_listing()}
      */
     public function search($searchtext, $page = '') {
         $data = $this->get_files(null, $searchtext, (int)$page);
